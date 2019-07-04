@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>Editar | Agenda</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />  
+    </head>
+    <body>
+        <div class="uk-container">
+            <article class="uk-article" th:each="contato : ${contato}">
+                <h1 class="uk-article-title" th:text="${'Editar'}"></h1>
+                <form class="uk-form-horizontal uk-margin-large" th:action="@{/editar}" method="post" enctype="multipart/form-data">
+                    
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">Nome do contato</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="form-horizontal-text" type="text" name="nome" placeholder="Nome do contato" th:value="${contato.nome}">
+                            </div>
+                   	</div>
+				    
+                	<div class="uk-margin">
+		                    <label class="uk-form-label" for="form-horizontal-text">Número do contato</label>
+		                <div class="uk-form-controls">
+		                    <input class="uk-input" id="form-horizontal-text" type="text" name="telefone" placeholder="Número do contato" th:value="${contato.telefone}">
+		         		</div>
+		                	<input type="hidden" name="id" th:value="${contato.id}">
+                    </div>
+                    
+                    <div class="uk-margin">
+					        <label class="uk-form-label" for="form-horizontal-select">Tipo</label>
+					        <div class="uk-form-controls">
+					            <select class="uk-select" name="tipo">
+					            	<option value = ""> Seleciona </option>
+					                <option value = "Compromisso"> Compromisso </option>
+					                <option value = "Aniversario"> Aniversario </option>
+					                <option value = "Evento"> Evento </option>
+					                <option value = "Jogo"> Jogo </option>
+					            </select>
+					        </div>
+					</div>
+					
+					<div class="uk-margin">
+					    	<label class="uk-form-label" for="form-horizontal-select">Data</label>
+					    	<div class="uk-form-controls">
+								<input class="data" type = "text" name = "data"/>	
+					    	</div>
+					</div>
+                    
+                    <table class="uk-table uk-table-middle uk-table-divider">
+	                    <tbody>
+	                    	<tr>
+		                        <td><button class="uk-button uk-button-primary" >Salvar Alteração</button></td>
+		                        <td style="text-align:right"><a class="uk-button uk-button-default" th:href="@{'/'}">Voltar</a></td>
+		                    </tr>
+	                    </tbody>
+                   </table>
+                   
+                </form>
+            </article>
+        </div>
+    	
+    	<script th:src="@{/js/jquery.js}"></script>
+        <script th:src="@{/js/jquery.mask.min.js}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
+        <script th:src="@{/js/scripts.js}"></script>
+    </body>
+</html>

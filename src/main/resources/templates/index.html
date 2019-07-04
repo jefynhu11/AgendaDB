@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <title>Agenda</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />  
+    </head>
+    <body>
+        <div class="uk-container">
+    		<button class="uk-button uk-button-primary uk-margin-small-right" type="button" uk-toggle="target: #modal-example">Novo contato</button>
+            <table class="uk-table uk-table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome do contato</th>
+                        <th>Número do telefone</th>
+                        <th>Tipo</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="contato : ${contatos}">
+    					<td th:text="${contato.nome}"></td>
+    					<td th:text="${contato.telefone}"></td>
+    					<td th:text="${contato.tipo}"></td>
+    					<td th:text="${contato.data}"></td>
+    					<td><a th:href="@{'/editar/' + ${contato.id}}">Editar</a></td>
+    					<td><a th:href="@{'/excluir/' + ${contato.id}}">Apagar</a></td>
+					</tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="modal-example" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+                <form th:action="@{/}" method="post" enctype="multipart/form-data">
+                    <fieldset class="uk-fieldset">
+                        <legend class="uk-legend">Digite contato</legend>
+                        <div class="uk-margin">
+                            <input class="uk-input" type="text" name="nome" placeholder="Nome de contato">
+                        </div>
+                        <div class="uk-margin">
+                            <input class="uk-input" type="text" name="telefone" placeholder="Número de telefone">
+                        </div>
+                        
+					    <div class="uk-margin">
+					        <label class="uk-form-label" for="form-horizontal-select">Tipo</label>
+					        <div class="uk-form-controls">
+					            <select class="uk-select" name="tipo">
+					            	<option value = ""> Seleciona </option>
+					                <option value = "Compromisso"> Compromisso </option>
+					                <option value = "Aniversario"> Aniversario </option>
+					                <option value = "Evento"> Evento </option>
+					                <option value = "Jogo"> Jogo </option>
+					            </select>
+					        </div>
+					    </div>
+					    
+					    <div class="uk-margin">
+					    	<label class="uk-form-label" for="form-horizontal-select">Data</label>
+					    	<div>
+								<input class="data" type = "text" name = "data"/>	
+					    	</div>
+					    </div>
+                    </fieldset>
+                    <p class="uk-text-left">
+                        <button class="uk-button uk-button-primary" type="submit">Adicionar</button>
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+        
+        <figure>
+  			<center><img src="https://mymob.com.br/uploads/1520028969-.jpg" width="304" height="228" usemap="#local"></center>
+  			<center><figcaption>Informações da Figura</figcaption></center>
+  			
+			<center><a href="https://www.google.com.br" uk-icon="google"></a></center>
+						
+			<map name="local">
+			  <area shape="rect" coords="240,75,200,45" alt="Mensagem" href="https://tecnoblog.net/wp-content/uploads/2018/06/whatsapp-aviso-mensagem-encaminhada.png">
+			  <area shape="circle" coords="134,82,55" alt="Whatsapp" href="https://ichef.bbci.co.uk/news/660/cpsprodpb/E273/production/_105717975_gettyimages-1003345798.jpg">
+			</map>
+			
+		</figure>
+    	
+        <script th:src="@{/js/jquery.js}"></script>
+        <script th:src="@{/js/jquery.mask.min.js}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
+        <script th:src="@{/js/scripts.js}"></script>
+    </body>
+</html>
+                        
